@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Va Lentin</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body onclick="cambiar()">
+    <div class="contenedor">
+        <img id="imagen" src="imagenes/1.jpg" />
+        <h1 id="frase">Feliz Sam Va Lentin Laura :3</h1>
+    </div>
+
+    <script>
+        // 📝 Frases (ahora algunas incluyen imágenes)
+        const frases = [
+            'No sabía que el amor podía sentirse así hasta que te conocí uwu',
+            'Te eligiría una y mil veces',
+            'Desde que estás tú, mi Sim duerme mejor ;) <br><img src="imagenes/sim.jpg" style="width:200px; margin-top:15px;">',
+            'Contigo no necesito motherlode  <br><img src="imagenes/sim2.jpg" style="width:200px; margin-top:15px;">',
+            'No necesito mirar el calendario, contigo siempre es un buen día <br><img src="imagenes/calendario." style="width:200px; margin-top:15px;">',
+            'No necesito la trifuerza si te tengo a ti  <br><img src="imagenes/zelda.jpg" style="width:200px; margin-top:15px;">',
+            'Contigo la vida se siente menos pesada',
+            'Eres la personas más increíble que he conocido y conocere',
+            'En tus ojos veo mi futuro y en tus brazos encuentro mi lugar 7u7',
+            'Eres mi lugar seguro, el motivo de mi alegría y mi compañera de vida',
+            'Mi corazón es tuyo owo',
+            'Te quiero platinar como juego de Steam',
+            'Si fueses un Pokemon, guardaría la Masterball para ti jijiji <br><img src="imagenes/master.png" style="width:200px; margin-top:15px;">',
+            'El amor es el juego multijugador más díficil el cual no se puede completar si no estas tu a mi lado',
+            'Nunca te banearía de mi vida, aún si usases hack o abusaras de bug, porque sabes que te amo con todo mi alma y mi corazón',
+            'Quiero seguir aprendiendo a tu lado',
+            'Te quiero Laura, lo eres todo para mi'
+        ];
+
+        // 🖼️ Imágenes
+        const imagenes = [
+            "imagenes/1.jpg",
+            // puedes añadir más aquí
+        ];
+
+        const fraseElegir = document.getElementById("frase");
+        const imagenElegir = document.getElementById("imagen");
+
+        // Estado inicial
+        let enseñar = "text"; // "text" o "imagen"
+        imagenElegir.style.display = "none";
+
+        // Para evitar repetir
+        let ultimaFraseIndex = -1;
+        let ultimaImagenIndex = -1;
+
+        function cambiar(){
+            if (enseñar === "text"){
+                // Ocultar texto
+                fraseElegir.style.display = "none";
+
+                // Elegir imagen diferente a la anterior
+                let nuevoIndexImg;
+                do {
+                    nuevoIndexImg = Math.floor(Math.random() * imagenes.length);
+                } while(nuevoIndexImg === ultimaImagenIndex && imagenes.length > 1);
+
+                ultimaImagenIndex = nuevoIndexImg;
+                imagenElegir.src = imagenes[nuevoIndexImg];
+                imagenElegir.style.display = "block";
+
+                enseñar = "imagen";
+
+            } else {
+                // Ocultar imagen
+                imagenElegir.style.display = "none";
+
+                // Elegir frase diferente a la anterior
+                let nuevoIndexFrase;
+                do {
+                    nuevoIndexFrase = Math.floor(Math.random() * frases.length);
+                } while(nuevoIndexFrase === ultimaFraseIndex && frases.length > 1);
+
+                ultimaFraseIndex = nuevoIndexFrase;
+
+                // Aquí usamos innerHTML para que se muestren imágenes dentro del texto
+                fraseElegir.innerHTML = frases[nuevoIndexFrase];
+                fraseElegir.style.display = "block";
+
+                enseñar = "text";
+            }
+        }
+    </script>
+</body>
+</html>
